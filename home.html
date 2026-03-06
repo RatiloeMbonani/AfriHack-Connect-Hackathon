@@ -1,0 +1,633 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empiras Vanguard</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+    .dashboard-section { display: none; }
+    .dashboard-section.active { display: block; }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    button { cursor: pointer; }
+
+    /* Optional: hide all support info sections initially */
+    .info-section { display: none; }
+    .info-section.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav-bar">
+    <div class="logo-container">
+        <img src="Empiras global academy logo.jpg" alt="Logo">
+    </div>
+    <ul>
+        <li><button onclick="showSection('home')"><i class="fa-regular fa-user"></i> HOME</button></li>
+        <li><button onclick="showSection('profile')"><i class="fa-regular fa-user"></i> PROFILE</button></li>
+        <li><button onclick="showSection('tools')"><i class="fa-solid fa-pen-to-square"></i> TOOLS</button></li>
+        <li><button onclick="showSection('support')"><i class="fa-solid fa-circle-question"></i> SUPPORT SERVICES</button></li>
+        <li><button onclick="showSection('signout')"><i class="fa-solid fa-arrow-right-from-bracket"></i> SIGN OUT</button></li>
+    </ul>
+</nav>
+
+<!-- HOME DASHBOARD -->
+<div id="home" class="dashboard-section">
+    <div class="image-container">
+        <h2>WELCOME TO THE HOME PAGE</h2>
+        <ul>
+            <li><button onclick="showHomeSection('home-academics')">Academics</button></li>
+            <li><button onclick="showHomeSection('home-extracurricular')">Extra Curricular</button></li>
+            <li><button onclick="showHomeSection('home-events')">Upcoming Events</button></li>
+        </ul>
+    </div>
+
+    <!-- HOME INNER SECTIONS -->
+      
+    <div id="home-academics" class="section active">
+      
+        <div class="subnav-bar">
+          <h2>Subjects</h2>
+            <div class="content">
+                <!-- Section Headers -->
+                <h1 id="header-academics">Subjects</h1>
+                <h1 id="header-extracurricular">Extra Curriculars</h1>
+                <h1 id="header-events">Upcoming Events</h1>
+
+                <!-- Academics Section -->
+                <div id="academics-section">
+                  <!-- English -->
+                  <div class="subject">
+                    <p><i class="fa-solid fa-book"></i> English</p>
+                    <p>Mr L Nadioo</p>
+                    <div class="progress" onclick="toggleSubject(this)">
+                      <div class="progress-fill" style="width:45%"></div>
+                      <span class="progress-text">45%</span>
+                    </div>
+                    <div class="subject-details">
+                      <div class="tabs">
+                        <button class="tab-button active" onclick="openTab(this,'eng-announcements')">Announcements</button>
+                        <button class="tab-button" onclick="openTab(this,'eng-content')">Subject Content</button>
+                        <button class="tab-button" onclick="openTab(this,'eng-assessments')">Assessments</button>
+                        <button class="tab-button" onclick="openTab(this,'eng-grades')">Grades</button>
+                      </div>
+                      <div class="tab-content active" id="eng-announcements">
+                        <h3>📢 Announcements</h3>
+                        <p>Reminder: English Test next week on 24 July 2025.</p>
+                      </div>
+                      <div class="tab-content" id="eng-content">
+                        <h3>📚 Subject Content</h3>
+                        <ul>
+                          <li>Chapter 1: Listening and speaking</li>
+                          <li>Chapter 2: Short Stories</li>
+                          <li>Chapter 3: Writing and presenting</li>
+                        </ul>
+                      </div>
+                      <div class="tab-content" id="eng-assessments">
+                        <h3>📝 Assessments</h3>
+                        <p>Upcoming assessment: Essay writing.</p>
+                      </div>
+                      <div class="tab-content" id="eng-grades">
+                        <h3>🎯 Grades</h3>
+                        <p>Current Grade: <strong>70%</strong></p>
+                      </div>
+                    </div>
+                  </div>
+                  
+<!-- Afrikaans -->
+  <div class="subject">
+    <p><i class="fa-solid fa-book"></i> Afrikaans</p>
+    <p>Mrs C Gerber</p>
+    <div class="progress" onclick="toggleSubject(this)">
+      <div class="progress-fill" style="width:69%"></div>
+      <span class="progress-text">69%</span>
+    </div>
+    <div class="subject-details">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(this,'afr-announcements')">Announcements</button>
+        <button class="tab-button" onclick="openTab(this,'afr-content')">Subject Content</button>
+        <button class="tab-button" onclick="openTab(this,'afr-assessments')">Assessments</button>
+        <button class="tab-button" onclick="openTab(this,'afr-grades')">Grades</button>
+      </div>
+      <div class="tab-content active" id="afr-announcements">
+        <h3>📢 Announcements</h3>
+        <p>Project due: Oral presentation next Monday.</p>
+      </div>
+      <div class="tab-content" id="afr-content">
+        <h3>📚 Subject Content</h3>
+        <ul>
+          <li>Hoofstuk 1: Gedigte</li>
+          <li>Hoofstuk 2: Kortverhale</li>
+          <li>Hoofstuk 3: Drama</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="afr-assessments">
+        <h3>📝 Assessments</h3>
+        <p>Upcoming: Comprehension Test.</p>
+      </div>
+      <div class="tab-content" id="afr-grades">
+        <h3>🎯 Grades</h3>
+        <p>Current Grade: <strong>50%</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Physical Science -->
+  <div class="subject">
+    <p><i class="fa-solid fa-book"></i> Physical Science</p>
+    <p>Mr A Mahlangu</p>
+    <div class="progress" onclick="toggleSubject(this)">
+      <div class="progress-fill" style="width:75%"></div>
+      <span class="progress-text">75%</span>
+    </div>
+    <div class="subject-details">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(this,'sci-announcements')">Announcements</button>
+        <button class="tab-button" onclick="openTab(this,'sci-content')">Subject Content</button>
+        <button class="tab-button" onclick="openTab(this,'sci-assessments')">Assessments</button>
+        <button class="tab-button" onclick="openTab(this,'sci-grades')">Grades</button>
+      </div>
+      <div class="tab-content active" id="sci-announcements">
+        <h3>📢 Announcements</h3>
+        <p>Chemistry test scheduled for Friday.</p>
+      </div>
+      <div class="tab-content" id="sci-content">
+        <h3>📚 Subject Content</h3>
+        <ul>
+          <li>Atomic Structure</li>
+          <li>Chemical Bonding</li>
+          <li>Newton’s Laws</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="sci-assessments">
+        <h3>📝 Assessments</h3>
+        <p>Lab Report due next week.</p>
+      </div>
+      <div class="tab-content" id="sci-grades">
+        <h3>🎯 Grades</h3>
+        <p>Current Grade: <strong>75%</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Life Science -->
+  <div class="subject">
+    <p><i class="fa-solid fa-book"></i> Life Science</p>
+    <p>Miss RT Mahlangu</p>
+    <div class="progress" onclick="toggleSubject(this)">
+      <div class="progress-fill" style="width:85%"></div>
+      <span class="progress-text">85%</span>
+    </div>
+    <div class="subject-details">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(this,'bio-announcements')">Announcements</button>
+        <button class="tab-button" onclick="openTab(this,'bio-content')">Subject Content</button>
+        <button class="tab-button" onclick="openTab(this,'bio-assessments')">Assessments</button>
+        <button class="tab-button" onclick="openTab(this,'bio-grades')">Grades</button>
+      </div>
+      <div class="tab-content active" id="bio-announcements">
+        <h3>📢 Announcements</h3>
+        <p>Exam on Human Anatomy scheduled for next month.</p>
+      </div>
+      <div class="tab-content" id="bio-content">
+        <h3>📚 Subject Content</h3>
+        <ul>
+          <li>Cell Biology</li>
+          <li>Genetics</li>
+          <li>Human Anatomy</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="bio-assessments">
+        <h3>📝 Assessments</h3>
+        <p>Practical test on Plant Structure.</p>
+      </div>
+      <div class="tab-content" id="bio-grades">
+        <h3>🎯 Grades</h3>
+        <p>Current Grade: <strong>85%</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mathematics -->
+  <div class="subject">
+    <p><i class="fa-solid fa-book"></i> Mathematics</p>
+    <p>Mr K Oyekami</p>
+    <div class="progress" onclick="toggleSubject(this)">
+      <div class="progress-fill" style="width:65%"></div>
+      <span class="progress-text">65%</span>
+    </div>
+    <div class="subject-details">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(this,'math-announcements')">Announcements</button>
+        <button class="tab-button" onclick="openTab(this,'math-content')">Subject Content</button>
+        <button class="tab-button" onclick="openTab(this,'math-assessments')">Assessments</button>
+        <button class="tab-button" onclick="openTab(this,'math-grades')">Grades</button>
+      </div>
+      <div class="tab-content active" id="math-announcements">
+        <h3>📢 Announcements</h3>
+        <p>Extra lessons every Wednesday at 3PM.</p>
+      </div>
+      <div class="tab-content" id="math-content">
+        <h3>📚 Subject Content</h3>
+        <ul>
+          <li>Algebra</li>
+          <li>Trigonometry</li>
+          <li>Calculus</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="math-assessments">
+        <h3>📝 Assessments</h3>
+        <p>Geometry Assignment due on Friday.</p>
+      </div>
+      <div class="tab-content" id="math-grades">
+        <h3>🎯 Grades</h3>
+        <p>Current Grade: <strong>65%</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Computer Applications Technology -->
+  <div class="subject">
+    <p><i class="fa-solid fa-book"></i> Computer Applications Technology</p>
+    <p>Miss S Swart</p>
+    <div class="progress" onclick="toggleSubject(this)">
+      <div class="progress-fill" style="width:70%"></div>
+      <span class="progress-text">70%</span>
+    </div>
+    <div class="subject-details">
+      <div class="tabs">
+        <button class="tab-button active" onclick="openTab(this,'cat-announcements')">Announcements</button>
+        <button class="tab-button" onclick="openTab(this,'cat-content')">Subject Content</button>
+        <button class="tab-button" onclick="openTab(this,'cat-assessments')">Assessments</button>
+        <button class="tab-button" onclick="openTab(this,'cat-grades')">Grades</button>
+      </div>
+      <div class="tab-content active" id="cat-announcements">
+        <h3>📢 Announcements</h3>
+        <p>Practical exam in MS Access next week.</p>
+      </div>
+      <div class="tab-content" id="cat-content">
+        <h3>📚 Subject Content</h3>
+        <ul>
+          <li>Databases</li>
+          <li>Spreadsheets</li>
+          <li>Networking Basics</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="cat-assessments">
+        <h3>📝 Assessments</h3>
+        <p>Excel Project Submission due soon.</p>
+      </div>
+      <div class="tab-content" id="cat-grades">
+        <h3>🎯 Grades</h3>
+        <p>Current Grade: <strong>70%</strong></p>
+      </div>
+    </div>
+  </div>
+                  <!-- Other subjects repeat as before (Afrikaans, Science, Life Science, Mathematics, CAT) -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="home-extracurricular" class="section">
+        <h2>Extra Curricular</h2>
+        <div class="curricular"><img src="netball.jpg" alt="Netball"><p>Netball</p></div>
+        <div class="curricular"><img src="cheerleading.jpg" alt="Cheerleading"><p>Cheerleading</p></div>
+        <div class="curricular"><img src="swimming.jpg" alt="Swimming"><p>Swimming</p></div>
+        <div class="curricular"><img src="hockey.jpg" alt="Hockey"><p>Hockey</p></div>
+    </div>
+
+    <div id="home-events" class="section">
+
+      
+        <h2>Upcoming Events</h2>
+        <div class="event"><h3>Cyber Awareness Day</h3><p>05 July 2025</p></div>
+        <div class="event"><h3>Hockey Match</h3><p>29 July 2025</p></div>
+        <div class="event"><h3>Science Fair</h3><p>12 July 2025</p></div>
+        <div class="event"><h3>Math Quiz</h3><p>20 July 2025</p></div>
+    </div>
+</div>
+
+
+<!-- PROFILE -->
+<div id="profile" class="dashboard-section">
+    <h2>Profile Page</h2>
+</div>
+
+<!-- TOOLS -->
+<div id="tools" class="dashboard-section">
+    <h2>Tools Dashboard</h2>
+     <main>
+        <header>
+            <div>
+                <span class="user-name">Boikanyo Molefi</span>
+                <span class="user-info">Learner</span>
+                <span class="user-info">Grade 11 · Learner ID: 10234</span>
+            </div>
+            
+        </header>
+        <section class="recent-courses">
+            <h2>Recent Activities</h2>
+            <div class="course-cards">
+                <div class="card">Maths Assignment Submitted<br>Yestuday</div>
+                <div class="card">English Test Graded<br>3 days ago</div>
+                <div class="card">Attended Science Class<br>A week ago</div>
+                <div class="card">Maths Quiz Completed<br>2 weeks ago</div>
+            </div>
+        </section>
+        <section class="stats-calendar">
+            <div class="stats">
+                <h3>School Statistics
+                    <p>Reports</p>
+                </h3>
+                <!-- Reports Section -->
+                <div class="reports-section">
+                    <h3>Current Grades</h3>
+                    <div class="grade-card grade-math">
+                        <div>
+                            Mathematics <br /><small>Mrs. Anderson</small>
+                        </div>
+                        <div class="grade-value">A- (92%)</div>
+                    </div>
+                    <div class="grade-card grade-science">
+                        <div>
+                            Science <br /><small>Mr. Thompson</small>
+                        </div>
+                        <div class="grade-value">A (95%)</div>
+                    </div>
+                    <div class="grade-card grade-english">
+                        <div>
+                            English <br /><small>Ms. Davis</small>
+                        </div>
+                        <div class="grade-value">B+ (87%)</div>
+                    </div>
+                    <div class="grade-card grade-history">
+                        <div>
+                            History <br /><small>Mr. Wilson</small>
+                        </div>
+                        <div class="grade-value">A- (90%)</div>
+                    </div>
+                </div>
+                <!-- Messages Section -->
+                <div class="messages-section">
+                    <h3>Messages</h3>
+                    <div class="message-card">
+                        <div class="message-avatar" style="background:#0f0a3c;">T</div>
+                        <div class="message-meta">
+                            <p class="subject">Math Teacher</p>
+                            <p class="preview">Sipho is doing well in algebra…</p>
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-avatar" style="background:#120c45;">P</div>
+                        <div class="message-meta">
+                            <p class="subject">Principal</p>
+                            <p class="preview">Reminder: Parent meeting next week</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-widget">
+                <h3>July 2025</h3>
+                <div class="calendar-header">
+                    <button class="calendar-nav">←</button>
+                    <button class="calendar-nav">→</button>
+                </div>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td class="event event-light-red">5</td><td>6</td></tr>
+                        <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="event event-light-red">12</td><td>13</td></tr>
+                        <tr><td>14</td><td class="event event-light-red">15</td><td>16</td><td>17</td><td class="event event-light-red">18</td><td>19</td><td class="event event-blue">20</td></tr>
+                        <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                        <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <h4>Upcoming Events</h4>
+                <div class="events-list">
+                    <div class="event-card event-light-red">
+                        <span class="event-date">Jul 12</span>
+                        <div>
+                            <strong>Math Test - Algebra</strong>
+                            <div class="event-details">Period 3 • Online</div>
+                        </div>
+                    </div>
+                    <div class="event-card event-blue">
+                        <span class="event-date">Jul 15</span>
+                        <div>
+                            <strong>Parent-Teacher Conference</strong>
+                            <div class="event-details">3:00 PM • Main Office</div>
+                        </div>
+                    </div>
+                    <div class="event-card event-green">
+                        <span class="event-date">Juln 18</span>
+                        <div>
+                            <strong>Science Fair Presentation</strong>
+                            <div class="event-details">10:00 AM • Online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="attendance-card">
+                <h3 class="title">Attendance Report</h3>
+                <!-- Donut Chart -->
+                <div class="chart-container">
+                    <svg class="chart" viewBox="0 0 36 36">
+                        <!-- Background Circle -->
+                        <path class="circle-bg" d="M18 2.0845 
+                            a 15.9155 15.9155 0 0 1 0 31.831 
+                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <!-- Progress Circle -->
+                        <path class="circle-progress" stroke-dasharray="96, 100" d="M18 2.0845 
+                            a 15.9155 15.9155 0 0 1 0 31.831 
+                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                    <div class="chart-value">96%</div>
+                </div>
+                <p class="subtitle">Overall Attendance</p>
+                <!-- Details -->
+                <div class="details">
+                    <div class="row">
+                        <span>Days Present</span>
+                        <span class="green">144</span>
+                    </div>
+                    <div class="row">
+                        <span>Days Absent</span>
+                        <span class="red">6</span>
+                    </div>
+                    <div class="row">
+                        <span>Tardies</span>
+                        <span class="yellow">3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+  
+
+</div>
+
+<!-- SUPPORT -->
+<div id="support" class="dashboard-section">
+    <h2>Support Services</h2>
+    <main>
+  <header>
+    <h1>🎓 Empiras Vanguard Support</h1>
+    <p>Resources for students, parents, and teachers</p>
+  </header>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="category active" data-target="academics">
+      <img src="https://img.icons8.com/?size=100&id=53377&format=png&color=000000" alt="Academics" />
+      <p>Academics</p>
+    </div>
+    <div class="category" data-target="extracurriculars">
+      <img src="https://img.icons8.com/?size=100&id=9601&format=png&color=000000" alt="Extracurriculars" />
+      <p>Extracurriculars</p>
+    </div>
+    <div class="category" data-target="events">
+      <img src="https://img.icons8.com/?size=100&id=88VQJwMmJtgC&format=png&color=000000" alt="Community" />
+      <p>Upcoming Events</p>
+    </div>
+  </section>
+
+  <!-- Info Sections -->
+  <section id="academics" class="info-section active">
+    <h2>Academic Resources</h2>
+    <div class="info-content">
+      <p>Find everything you need to succeed in your classes and coursework.</p>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>For Students</h3>
+          <ul>
+            <li>Study guides and resources</li>
+            <li>Tutoring schedule</li>
+            <li>Homework help</li>
+            <li>Course selection advice</li>
+            <li>Exam preparation tips</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>For Parents</h3>
+          <ul>
+            <li>Progress tracking</li>
+            <li>Parent-teacher conference scheduling</li>
+            <li>Curriculum overview</li>
+            <li>How to support learning at home</li>
+            <li>Grade monitoring</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>For Teachers</h3>
+          <ul>
+            <li>Curriculum resources</li>
+            <li>Professional development</li>
+            <li>Grading policies</li>
+            <li>Classroom management tools</li>
+            <li>Lesson planning templates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="extracurriculars" class="info-section">
+    <h2>Extracurricular Activities</h2>
+    <div class="info-content">
+      <p>Explore opportunities beyond the classroom to develop skills and interests.</p>
+    </div>
+  </section>
+
+  <section id="events" class="info-section">
+    <h2>Upcoming Events</h2>
+    <div class="info-content">
+      <p>Stay informed about important dates and school activities.</p>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="quick-actions">
+    <button class="action-btn" data-target="password">
+      <span class="icon">🔐</span>
+      <span>Reset Password</span>
+    </button>
+    <button class="action-btn" data-target="billing">
+      <span class="icon">💳</span>
+      <span>Billing & Subscriptions</span>
+    </button>
+  </section>
+
+  <section id="password" class="info-section">
+    <h2>Password Reset</h2>
+    <div class="info-content"><p>Instructions...</p></div>
+  </section>
+
+  <section id="billing" class="info-section">
+    <h2>Billing & Subscriptions</h2>
+    <div class="info-content"><p>Instructions...</p></div>
+  </section>
+
+</main>
+
+  
+</div>
+
+<!-- SIGNOUT -->
+<div id="signout" class="dashboard-section">
+    <h2>Sign Out</h2>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+    // Main nav
+    function showSection(id) {
+        document.querySelectorAll('.dashboard-section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        // Reset home inner sections
+        if(id === 'home') showHomeSection('home-academics');
+    }
+
+    // Home inner nav
+    function showHomeSection(id) {
+        document.querySelectorAll('#home .section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    // Tabs inside subjects
+    function openTab(btn, tabId) {
+        let parent = btn.closest('.subject-details');
+        parent.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        parent.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // Toggle subject progress/details
+    function toggleSubject(progressDiv) {
+        let details = progressDiv.nextElementSibling;
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Default on load
+    window.addEventListener('DOMContentLoaded', () => {
+        showSection('home');
+        showHomeSection('home-academics');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        /* Reset and base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            display: flex;
+            background: #ffffff;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+        main {
+            flex-grow: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .user-name {
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .user-info {
+            display: block;
+            font-size: 13px;
+            color: #888;
+        }
+        .header-icons span {
+            background: #0f0a3c;
+            margin-left: 10px;
+            padding: 10px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 3px 3px 9px #120c45, -3px -3px 9px #ffffff;
+        }
+        
+        .recent-courses h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .card {
+            background: #f7f7f9;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 4px 4px 15px #120c45, -4px -4px 15px #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #040404;
+            position: relative;
+        }
+        .card:nth-child(2) {
+            background: #fbfaf9;
+            color: #060606;
+        }
+        .card:nth-child(4) {
+            background: #f1f1f3;
+            color: #0a0a0a;
+        }
+        .card:nth-child(3) {
+            background: #f6f6f7;
+            color: #060606;
+        }
+        .card::after {
+            content: "→";
+            font-weight: 700;
+            font-size: 22px;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .stats-calendar {
+            display: flex;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        .stats, .calendar-widget, .credit-stats {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 3px 3px 10px #ccc, -3px -3px 10px #fff;
+            flex-shrink: 0;
+        }
+        .stats {
+            flex: 2;
+        }
+        .calendar-widget {
+            flex: 1;
+            min-width: 400px; /* increased from 340px */
+            max-width: 420px; /* optionally set max width */
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom:10px;
+        }
+        .calendar-nav {
+           
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            padding: 5px 12px;
+            cursor: pointer;
+            color: #0b0729;
+        }
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+        }
+        .calendar th, .calendar td {
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            color: #444;
+        }
+        .calendar td {
+            background: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .calendar td.event-light-red {
+            background: #fae8ea;
+            color: #e14343;
+            font-weight: 700;
+        }
+        .calendar td.event-blue {
+            background: #eceefe;
+            color: #3186ff;
+            font-weight: 700;
+        }
+        .events-list {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+        .event-card {
+            display: flex;
+            align-items: flex-start;
+            border-radius: 10px;
+            padding: 12px 16px;
+            box-shadow: 2px 2px 6px #f3f3fd;
+        }
+        .event-card .event-date {
+            min-width: 55px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-right: 15px;
+            padding: 6px 0;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .event-details {
+            font-size: 13px;
+            color: #555;
+        }
+        .event-card.event-light-red {
+            background: #fae8ea;
+            border-left: 4px solid #e14343;
+        }
+        .event-card.event-blue {
+            background: #eceefe;
+            border-left: 4px solid #3186ff;
+        }
+        .event-card.event-green {
+            background: #e8faea;
+            border-left: 4px solid #46bc50;
+        }
+        /* === Reports (Current Grades) === */
+        .reports-section {
+            margin-top: 25px;
+        }
+        .grade-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .grade-card small {
+            display: block;
+            font-weight: normal;
+            color: #555;
+            font-size: 13px;
+        }
+        .grade-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .grade-math {
+            background: #f0f6ff;
+            color: #1d4ed8;
+        }
+        .grade-science {
+            background: #f0f6ff;
+            color: #1d4ed8;
+        }
+        .grade-english {
+            background: #f0f6ff;
+            color: #1d4ed8;
+        }
+        .grade-history {
+            background: #f0f6ff;
+            color: #1d4ed8;
+        }
+        /* === Messages Section === */
+        .messages-section {
+            margin-top: 30px;
+        }
+        .message-card {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+        }
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 12px;
+            color: #fff;
+        }
+        .message-avatar:nth-child(1) {
+            background:#0f0a3c;
+        }
+        .message-avatar:nth-child(2) {
+            background:#120c45;
+        }
+        .message-meta {
+            flex: 1;
+        }
+        .message-meta p {
+            margin: 0;
+        }
+        .message-meta .subject {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .message-meta .preview {
+            font-size: 13px;
+            color: #666;
+        }
+        .attendance-card {
+            background: #fff;
+            border: 1px solid #120c45;
+            border-radius: 16px;
+            padding: 20px;
+            max-width: 350px;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(18, 12, 69, 0.2);
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        /* Donut Chart */
+        .chart-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 15px auto;
+        }
+        .chart {
+            width: 130px;
+            height: 130px;
+            transform: rotate(-90deg);
+        }
+        .circle-bg {
+            fill: none;
+            stroke: #e5e7eb;
+            stroke-width: 3;
+        }
+        .circle-progress {
+            fill: none;
+            stroke: #db9953;
+            stroke-width: 3;
+        }
+        .chart-value {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #db9953;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        /* Details section */
+        .details {
+            margin-top: 10px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 15px;
+            color: #444;
+        }
+        .green {
+            color: #db9953;
+            font-weight: bold;
+        }
+        .red {
+            color: #dc2626;
+            font-weight: bold;
+        }
+        .yellow {
+            color: #ca8a04;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div>
+                <span class="user-name">Boikanyo Molefi</span>
+                <span class="user-info">Learner</span>
+                <span class="user-info">Grade 11 · Learner ID: 10234</span>
+            </div>
+            
+        </header>
+        <section class="recent-courses">
+            <h2>Recent Activities</h2>
+            <div class="course-cards">
+                <div class="card">Maths Assignment Submitted<br>Yestuday</div>
+                <div class="card">English Test Graded<br>3 days ago</div>
+                <div class="card">Attended Science Class<br>A week ago</div>
+                <div class="card">Maths Quiz Completed<br>2 weeks ago</div>
+            </div>
+        </section>
+        <section class="stats-calendar">
+            <div class="stats">
+                <h3>School Statistics
+                    <p>Reports</p>
+                </h3>
+                <!-- Reports Section -->
+                <div class="reports-section">
+                    <h3>Current Grades</h3>
+                    <div class="grade-card grade-math">
+                        <div>
+                            Mathematics <br /><small>Mrs. Anderson</small>
+                        </div>
+                        <div class="grade-value">A- (92%)</div>
+                    </div>
+                    <div class="grade-card grade-science">
+                        <div>
+                            Science <br /><small>Mr. Thompson</small>
+                        </div>
+                        <div class="grade-value">A (95%)</div>
+                    </div>
+                    <div class="grade-card grade-english">
+                        <div>
+                            English <br /><small>Ms. Davis</small>
+                        </div>
+                        <div class="grade-value">B+ (87%)</div>
+                    </div>
+                    <div class="grade-card grade-history">
+                        <div>
+                            History <br /><small>Mr. Wilson</small>
+                        </div>
+                        <div class="grade-value">A- (90%)</div>
+                    </div>
+                </div>
+                <!-- Messages Section -->
+                <div class="messages-section">
+                    <h3>Messages</h3>
+                    <div class="message-card">
+                        <div class="message-avatar" style="background:#0f0a3c;">T</div>
+                        <div class="message-meta">
+                            <p class="subject">Math Teacher</p>
+                            <p class="preview">Sipho is doing well in algebra…</p>
+                        </div>
+                    </div>
+                    <div class="message-card">
+                        <div class="message-avatar" style="background:#120c45;">P</div>
+                        <div class="message-meta">
+                            <p class="subject">Principal</p>
+                            <p class="preview">Reminder: Parent meeting next week</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-widget">
+                <h3>July 2025</h3>
+                <div class="calendar-header">
+                    <button class="calendar-nav">←</button>
+                    <button class="calendar-nav">→</button>
+                </div>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td class="event event-light-red">5</td><td>6</td></tr>
+                        <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="event event-light-red">12</td><td>13</td></tr>
+                        <tr><td>14</td><td class="event event-light-red">15</td><td>16</td><td>17</td><td class="event event-light-red">18</td><td>19</td><td class="event event-blue">20</td></tr>
+                        <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                        <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+                    </tbody>
+                </table>
+                <h4>Upcoming Events</h4>
+                <div class="events-list">
+                    <div class="event-card event-light-red">
+                        <span class="event-date">Jul 12</span>
+                        <div>
+                            <strong>Math Test - Algebra</strong>
+                            <div class="event-details">Period 3 • Online</div>
+                        </div>
+                    </div>
+                    <div class="event-card event-blue">
+                        <span class="event-date">Jul 15</span>
+                        <div>
+                            <strong>Parent-Teacher Conference</strong>
+                            <div class="event-details">3:00 PM • Main Office</div>
+                        </div>
+                    </div>
+                    <div class="event-card event-green">
+                        <span class="event-date">Juln 18</span>
+                        <div>
+                            <strong>Science Fair Presentation</strong>
+                            <div class="event-details">10:00 AM • Online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="attendance-card">
+                <h3 class="title">Attendance Report</h3>
+                <!-- Donut Chart -->
+                <div class="chart-container">
+                    <svg class="chart" viewBox="0 0 36 36">
+                        <!-- Background Circle -->
+                        <path class="circle-bg" d="M18 2.0845 
+                            a 15.9155 15.9155 0 0 1 0 31.831 
+                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <!-- Progress Circle -->
+                        <path class="circle-progress" stroke-dasharray="96, 100" d="M18 2.0845 
+                            a 15.9155 15.9155 0 0 1 0 31.831 
+                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                    <div class="chart-value">96%</div>
+                </div>
+                <p class="subtitle">Overall Attendance</p>
+                <!-- Details -->
+                <div class="details">
+                    <div class="row">
+                        <span>Days Present</span>
+                        <span class="green">144</span>
+                    </div>
+                    <div class="row">
+                        <span>Days Absent</span>
+                        <span class="red">6</span>
+                    </div>
+                    <div class="row">
+                        <span>Tardies</span>
+                        <span class="yellow">3</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="document.js"></script>
+</body>
+</html>

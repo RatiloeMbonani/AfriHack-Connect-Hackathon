@@ -53,7 +53,7 @@ The platform consists of the following modules:
 	•	Notification Systems (In Development)
 
 Installation
-	1.	Download or clone the repository(git clone https://github.com/yourusername/project-name.git)
+	1.	Download or clone the repository(git clone https://github.com/RatiloeMbonani/project-name.git)
 	2.	Open the project folder
 	3.	Open the index.html file in your browser
 	4.	Explore the different dashboards and platform features

@@ -1,7 +1,7 @@
-Hackathon Project
+AfriHack Hackathon Project.
 This project was developed during the AfriHack Hackathon Connect, where participants collaborated to design innovative technology solutions.
 Our team worked together to conceptualize and build an online academic monitoring platform that helps students, parents, and teachers track 
-academic progress and set yearly goals..This project demonstrates collaboration, front-end development skills, and the ability to build solutions 
+academic progress and set yearly goals.This project demonstrates collaboration, front-end development skills, and the ability to build solutions 
 under time constraints.
 
 Project Objectives
@@ -71,5 +71,5 @@ Future Improvements
   
 Author
 Ratiloe Lebogang Mbonani
-Aspiring Web Developer
+Aspiring Full Stack Developer
 

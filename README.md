@@ -65,11 +65,5 @@ Screenshots of the system interface include:
 ![Teacher Dashboard](https://github.com/user-attachments/assets/a50ac488-afb8-41fb-9f54-64b6fcf8150c)
 ![Student Dashboard](https://github.com/user-attachments/assets/a598b0b4-4f11-4967-9c27-9737a9dfd607)
 
-Future Improvements
-	•	Full backend integration with databases
-	•	Real-time notification system
-  
-Author
-Ratiloe Lebogang Mbonani
-Aspiring Full Stack Developer
+
 
